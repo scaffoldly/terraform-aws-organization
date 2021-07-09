@@ -1,4 +1,4 @@
-[![Maintained by Scaffoldly](https://img.shields.io/badge/maintained%20by-scaffold.ly-blueviolet)](https://github.com/scaffoldly)
+[![Maintained by Scaffoldly](https://img.shields.io/badge/maintained%20by-scaffoldly-blueviolet)](https://github.com/scaffoldly)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/scaffoldly/terraform-aws-organization)
 ![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.15.0-blue.svg)
 
