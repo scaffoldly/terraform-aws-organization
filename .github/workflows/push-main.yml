@@ -8,9 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
+      - uses: actions/cache@v2
+        with:
+          path: ./.terraform/providers
+          key: ${{ runner.os }}-providers-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-providers-
       - run: terraform init
       - run: terraform fmt -check -recursive -diff
       - run: terraform validate
+      - uses: terraform-docs/gh-actions@v0.6.1
+        with:
+          working-dir: .
+          output-file: README.md
+          output-format: markdown
+          output-method: inject
       - uses: scaffoldly/bump-version-action@v1
         with:
           action: prerelease
