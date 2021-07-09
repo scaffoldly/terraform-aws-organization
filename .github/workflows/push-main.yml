@@ -24,7 +24,7 @@ jobs:
           output-format: markdown
           output-method: inject
           git-push: "true"
-      - uses: scaffoldly/bump-version-action@v1
+      - uses: scaffoldly/bump-version-action@1.0.92-0
         with:
           action: prerelease
           version-file: sly.json
