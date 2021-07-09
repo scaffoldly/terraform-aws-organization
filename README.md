@@ -1,39 +1,134 @@
-[![Maintained by Scaffoldly](https://img.shields.io/badge/maintained%20by-scaffold.ly-blueviolet)](https://github.com/scaffoldly)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/scaffoldly/terraform-aws-organization)
-![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.15.0-blue.svg)
+# terraform-docs
 
-## Description
+[![Build Status](https://github.com/terraform-docs/terraform-docs/workflows/ci/badge.svg)](https://github.com/terraform-docs/terraform-docs/actions) [![GoDoc](https://pkg.go.dev/badge/github.com/terraform-docs/terraform-docs)](https://pkg.go.dev/github.com/terraform-docs/terraform-docs) [![Go Report Card](https://goreportcard.com/badge/github.com/terraform-docs/terraform-docs)](https://goreportcard.com/report/github.com/terraform-docs/terraform-docs) [![Codecov Report](https://codecov.io/gh/terraform-docs/terraform-docs/branch/master/graph/badge.svg)](https://codecov.io/gh/terraform-docs/terraform-docs) [![License](https://img.shields.io/github/license/terraform-docs/terraform-docs)](https://github.com/terraform-docs/terraform-docs/blob/master/LICENSE) [![Latest release](https://img.shields.io/github/v/release/terraform-docs/terraform-docs)](https://github.com/terraform-docs/terraform-docs/releases)
 
-Create an AWS organization.
+![terraform-docs-teaser](./images/terraform-docs-teaser.png)
 
-## Usage
+## What is terraform-docs
 
-```hcl
-module "aws" {
-  source  = "scaffoldly/organization/aws"
-  name   = var.organization
-  email  = var.root_email
-}
+A utility to generate documentation from Terraform modules in various output formats.
+
+## Documentation
+
+- **Users**
+  - Read the [User Guide] to learn how to use terraform-docs
+  - Read the [Formats Guide] to learn about different output formats of terraform-docs
+  - Refer to [Config File Reference] for all the available configuration options
+- **Developers**
+  - Read [Contributing Guide] before submitting a pull request
+
+Visit [our website] for all documentation.
+
+## Installation
+
+The latest version can be installed using `go get`:
+
+```bash
+GO111MODULE="on" go get github.com/terraform-docs/terraform-docs@v0.14.1
 ```
 
-<!-- BEGIN_TF_DOCS -->
+**NOTE:** to download any version **before** `v0.9.1` (inclusive) you need to use to
+old module namespace (`segmentio`):
 
+```bash
+# only for v0.9.1 and before
+GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.9.1
+```
+
+**NOTE:** please use the latest Go to do this, minimum `go1.16` or greater.
+
+This will put `terraform-docs` in `$(go env GOPATH)/bin`. If you encounter the error
+`terraform-docs: command not found` after installation then you may need to either add
+that directory to your `$PATH` as shown [here] or do a manual installation by cloning
+the repo and run `make build` from the repository which will put `terraform-docs` in:
+
+```bash
+$(go env GOPATH)/src/github.com/terraform-docs/terraform-docs/bin/$(uname | tr '[:upper:]' '[:lower:]')-amd64/terraform-docs
+```
+
+Stable binaries are also available on the [releases] page. To install, download the
+binary for your platform from "Assets" and place this into your `$PATH`:
+
+```bash
+curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.14.1/terraform-docs-v0.14.1-$(uname)-amd64.tar.gz
+tar -xzf terraform-docs.tar.gz
+chmod +x terraform-docs
+mv terraform-docs /some-dir-in-your-PATH/terraform-docs
+```
+
+**NOTE:** Windows releases are in `ZIP` format.
+
+If you are a Mac OS X user, you can use [Homebrew]:
+
+```bash
+brew install terraform-docs
+```
+
+or
+
+```bash
+brew install terraform-docs/tap/terraform-docs
+```
+
+Windows users can install using [Scoop]:
+
+```bash
+scoop bucket add terraform-docs https://github.com/terraform-docs/scoop-bucket
+scoop install terraform-docs
+```
+
+or [Chocolatey]:
+
+```bash
+choco install terraform-docs
+```
+
+Alternatively you also can run `terraform-docs` as a container:
+
+```bash
+docker run quay.io/terraform-docs/terraform-docs:0.14.1
+```
+
+**NOTE:** Docker tag `latest` refers to _latest_ stable released version and `edge`
+refers to HEAD of `master` at any given point in time.
+
+## Community
+
+- Discuss terraform-docs on [Slack]
+
+## License
+
+MIT License - Copyright (c) 2021 The terraform-docs Authors.
+
+[User Guide]: ./docs/user-guide/introduction.md
+[Formats Guide]: ./docs/reference/terraform-docs.md
+[Config File Reference]: ./docs/user-guide/configuration.md
+[Contributing Guide]: CONTRIBUTING.md
+[our website]: https://terraform-docs.io/
+[here]: https://golang.org/doc/code.html#GOPATH
+[releases]: https://github.com/terraform-docs/terraform-docs/releases
+[Homebrew]: https://brew.sh
+[Scoop]: https://scoop.sh/
+[Chocolatey]: https://www.chocolatey.org
+[Slack]: https://slack.terraform-docs.io/
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-| Name                                                                     | Version   |
-| ------------------------------------------------------------------------ | --------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | ~> 0.15.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 3.49.0 |
-| <a name="requirement_random"></a> [random](#requirement_random)          | ~> 3.1.0  |
-| <a name="requirement_time"></a> [time](#requirement_time)                | ~> 0.7.2  |
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.49.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.1.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.7.2 |
 
 ## Providers
 
-| Name                                                      | Version |
-| --------------------------------------------------------- | ------- |
-| <a name="provider_aws"></a> [aws](#provider_aws)          | 3.49.0  |
-| <a name="provider_random"></a> [random](#provider_random) | 3.1.0   |
-| <a name="provider_time"></a> [time](#provider_time)       | 0.7.2   |
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.49.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.7.2 |
 
 ## Modules
 
@@ -41,29 +136,24 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                                   | Type     |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Name | Type |
+|------|------|
 | [aws_organizations_account.account](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/organizations_account) | resource |
-| [random_string.random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)                          | resource |
-| [time_sleep.wait_120_seconds](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep)                      | resource |
+| [random_string.random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [time_sleep.wait_120_seconds](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 
 ## Inputs
 
-| Name                                             | Description | Type     | Default | Required |
-| ------------------------------------------------ | ----------- | -------- | ------- | :------: |
-| <a name="input_email"></a> [email](#input_email) | n/a         | `string` | n/a     |   yes    |
-| <a name="input_name"></a> [name](#input_name)    | n/a         | `string` | n/a     |   yes    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_email"></a> [email](#input\_email) | The email for the account (must be unique within Amazon AWS) | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | The desired account name | `string` | n/a | yes |
 
 ## Outputs
 
-| Name                                                                    | Description |
-| ----------------------------------------------------------------------- | ----------- |
-| <a name="output_account_id"></a> [account_id](#output_account_id)       | n/a         |
-| <a name="output_account_name"></a> [account_name](#output_account_name) | n/a         |
-| <a name="output_slept_time"></a> [slept_time](#output_slept_time)       | n/a         |
-
+| Name | Description |
+|------|-------------|
+| <a name="output_account_id"></a> [account\_id](#output\_account\_id) | The AWS Account ID |
+| <a name="output_account_name"></a> [account\_name](#output\_account\_name) | The AWS Account Name |
+| <a name="output_slept_time"></a> [slept\_time](#output\_slept\_time) | The unique ID of the sleep timer |
 <!-- END_TF_DOCS -->
-
-## Authors
-
-Module is maintained by [Scaffoldly](https://github.com/scaffoldly)
