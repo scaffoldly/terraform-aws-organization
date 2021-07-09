@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.49.0"
+      version = "~> 3.33.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -11,7 +11,7 @@ terraform {
     }
     time = {
       source  = "hashicorp/time"
-      version = "~> 0.7.2"
+      version = "~> 0.7.0"
     }
   }
 }

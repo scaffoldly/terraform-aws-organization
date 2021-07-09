@@ -23,13 +23,11 @@ module "aws" {
 | Name                                                                     | Version   |
 | ------------------------------------------------------------------------ | --------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 0.15   |
-| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 3.49.0 |
+| <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 3.33.0 |
 | <a name="requirement_random"></a> [random](#requirement_random)          | ~> 3.1.0  |
-| <a name="requirement_time"></a> [time](#requirement_time)                | ~> 0.7.2  |
+| <a name="requirement_time"></a> [time](#requirement_time)                | ~> 0.7.0  |
 
 ## Providers
-
-
 
 | Name                                                      | Version |
 | --------------------------------------------------------- | ------- |
