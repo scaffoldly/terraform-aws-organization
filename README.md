@@ -1,7 +1,19 @@
+[![Maintained by Scaffoldly](https://img.shields.io/badge/maintained%20by-scaffold.ly-blueviolet)](https://github.com/scaffoldly)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/scaffoldly/terraform-aws-organization)
+![Terraform Version](https://img.shields.io/badge/tf-%3E%3D0.15.0-blue.svg)
+
+## Description
+
+Create an AWS organization.
+
 ## Usage
 
 ```hcl
-
+module "aws" {
+  source  = "scaffoldly/organization/aws"
+  name   = var.organization
+  email  = var.root_email
+}
 ```
 
 <!-- BEGIN_TF_DOCS -->
