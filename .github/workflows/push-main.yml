@@ -22,7 +22,7 @@ jobs:
           curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.14.1/terraform-docs-v0.14.1-$(uname)-amd64.tar.gz
           tar -xzf terraform-docs.tar.gz
           chmod +x terraform-docs
-          terraform-docs markdown . --output-file README.md
+          ./terraform-docs markdown . --output-file README.md
       - uses: scaffoldly/bump-version-action@1.0.92-3
         with:
           action: prerelease
