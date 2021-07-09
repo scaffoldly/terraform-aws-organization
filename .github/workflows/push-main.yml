@@ -18,11 +18,11 @@ jobs:
       - run: terraform init
       - run: terraform fmt -check -recursive -diff
       - run: terraform validate
-      # - uses: terraform-docs/gh-actions@v0.6.1
-      #   with:
-      #     output-file: README.md
-      #     output-format: markdown
-      #     output-method: inject
+      - uses: terraform-docs/gh-actions@v0.6.1
+        with:
+          output-file: README.md
+          output-format: markdown
+          output-method: inject
       - uses: scaffoldly/bump-version-action@1.0.92-3
         with:
           action: prerelease
